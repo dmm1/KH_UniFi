@@ -1,6 +1,6 @@
 <?php
 
-include_once("../modules/KH_UniFi/UniFi/orga.php");
+include_once("../modules/UniFi/UniFi/orga.php");
 
 $parentID = IPS_GetParent($_IPS["SELF"]);
 $wlanList = UniFi_GetWLANConfig($parentID);

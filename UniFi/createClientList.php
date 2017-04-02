@@ -15,7 +15,7 @@ $apList = array(
 // ----------------------------------------------------------------------------------
 // Ab hier dann bitte nichts mehr ändern
 // ----------------------------------------------------------------------------------
-include_once("../modules/KH_UniFi/UniFi/orga.php");
+include_once("../modules/UniFi/UniFi/orga.php");
 
 $parentID = IPS_GetParent($_IPS["SELF"]);
 
@@ -44,13 +44,22 @@ if (is_object($clientList))
 			}
 
 		// War nicht in Liste!
-		if ($clientName == "")
-				$clientName = $client->hostname;
+        if ($clientName == "")
+        {
+            if (@$client->hostname != "")
+            {
+                $clientName = $client->hostname;
+            }
+            else
+            {
+               $clientName = "unbekannt";
+            }
+        }
 
-		$scriptResult .= "<td>".$clientName."</td>";
+        $scriptResult .= "<td>".$clientName."</td>";
 
-		$scriptResult .= "<td style='text-align:center'>".$client->mac."</td>";
-		$scriptResult .= "<td style='text-align:center'>".$client->ip."</td>";
+        $scriptResult .= "<td style='text-align:center'>".$client->mac."</td>";
+        $scriptResult .= "<td style='text-align:center'>".$client->ip."</td>";  
 		
 		// Accesspoints übersetzen
 		$apName = "";
